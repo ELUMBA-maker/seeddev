@@ -15,6 +15,7 @@ export class Navbar {
     { label: 'Reviews', route: '/reviews' },
     { label: 'About', route: '/about' },
     { label: 'Contact us', route: '/contact' },
+    { label: 'wishlist', route: '/wishlist' },
   ];
 
   constructor(private router: Router) {}

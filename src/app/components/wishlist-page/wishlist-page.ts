@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-wishlist-page',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './wishlist-page.html',
   styleUrl: './wishlist-page.css',
 })
-export class WishlistPage {}
+export class WishlistPage {
+  wishlist = inject(WishlistService);
+}
