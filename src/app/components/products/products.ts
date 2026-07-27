@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface ProductItem {
+  id: string;
   name: string;
   category: string;
   description: string;
@@ -12,7 +14,7 @@ interface ProductItem {
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <section class="page-shell">
       <div class="page-header">
@@ -33,6 +35,7 @@ interface ProductItem {
             <span class="badge">{{ item.badge }}</span>
             <h4>{{ item.name }}</h4>
             <p>{{ item.description }}</p>
+            <a class="view-link" [routerLink]="['/products', item.id]">View details →</a>
           </article>
         </div>
       </div>
@@ -143,6 +146,19 @@ interface ProductItem {
       font-size: 0.95rem;
     }
 
+    .view-link {
+      display: inline-block;
+      margin-top: 0.7rem;
+      color: #244f83;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .view-link:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 900px) {
       .product-grid {
         grid-template-columns: 1fr;
@@ -156,27 +172,27 @@ export class ProductsComponent {
       title: 'Temporary Support',
       description: 'Designed for short-term comfort needs and recovery periods.',
       items: [
-        { name: 'Recovery Jacket', category: 'Temporary Support', description: 'Soft layers and easy fastening for post-surgery comfort.', badge: 'Recovery', image: 'linear-gradient(135deg, #dcefff 0%, #8dc3ff 100%)' },
-        { name: 'Comfort Wrap Set', category: 'Temporary Support', description: 'Gentle stretch and a relaxed fit for swelling or fatigue.', badge: 'Support', image: 'linear-gradient(135deg, #f6e8ff 0%, #c8aefc 100%)' },
-        { name: 'Posture Relief Layer', category: 'Temporary Support', description: 'Lightweight support designed for ease during recovery.', badge: 'Daily', image: 'linear-gradient(135deg, #e8f7eb 0%, #a8d8b5 100%)' },
+        { id: 'recovery-jacket', name: 'Recovery Jacket', category: 'Temporary Support', description: 'Soft layers and easy fastening for post-surgery comfort.', badge: 'Recovery', image: 'linear-gradient(135deg, #dcefff 0%, #8dc3ff 100%)' },
+        { id: 'comfort-wrap-set', name: 'Comfort Wrap Set', category: 'Temporary Support', description: 'Gentle stretch and a relaxed fit for swelling or fatigue.', badge: 'Support', image: 'linear-gradient(135deg, #f6e8ff 0%, #c8aefc 100%)' },
+        { id: 'posture-relief-layer', name: 'Posture Relief Layer', category: 'Temporary Support', description: 'Lightweight support designed for ease during recovery.', badge: 'Daily', image: 'linear-gradient(135deg, #e8f7eb 0%, #a8d8b5 100%)' },
       ] as ProductItem[],
     },
     {
       title: 'Permanent Support',
       description: 'Practical clothing made for everyday independence and mobility.',
       items: [
-        { name: 'Mobility Shirt', category: 'Permanent Support', description: 'Easy sleeve access and smooth movement for all-day wear.', badge: 'Mobility', image: 'linear-gradient(135deg, #e8f7eb 0%, #79c2a7 100%)' },
-        { name: 'Adaptive Outerwear', category: 'Permanent Support', description: 'Thoughtful closures and easy grip for confident dressing.', badge: 'Outerwear', image: 'linear-gradient(135deg, #fff2d8 0%, #f2b56b 100%)' },
-        { name: 'Comfort Fit Set', category: 'Permanent Support', description: 'Flexible structure and comfort-focused details for regular use.', badge: 'Everyday', image: 'linear-gradient(135deg, #eaf2ff 0%, #a5c4ff 100%)' },
+        { id: 'mobility-shirt', name: 'Mobility Shirt', category: 'Permanent Support', description: 'Easy sleeve access and smooth movement for all-day wear.', badge: 'Mobility', image: 'linear-gradient(135deg, #e8f7eb 0%, #79c2a7 100%)' },
+        { id: 'adaptive-outerwear', name: 'Adaptive Outerwear', category: 'Permanent Support', description: 'Thoughtful closures and easy grip for confident dressing.', badge: 'Outerwear', image: 'linear-gradient(135deg, #fff2d8 0%, #f2b56b 100%)' },
+        { id: 'comfort-fit-set', name: 'Comfort Fit Set', category: 'Permanent Support', description: 'Flexible structure and comfort-focused details for regular use.', badge: 'Everyday', image: 'linear-gradient(135deg, #eaf2ff 0%, #a5c4ff 100%)' },
       ] as ProductItem[],
     },
     {
       title: 'Everyday Wear',
       description: 'Stylish clothing that brings comfort into everyday routines.',
       items: [
-        { name: 'Daily Layer Top', category: 'Everyday Wear', description: 'A modern, soft everyday essential for all-day comfort.', badge: 'Lifestyle', image: 'linear-gradient(135deg, #fef2f2 0%, #f5c7c7 100%)' },
-        { name: 'Calm Essentials Set', category: 'Everyday Wear', description: 'Clean design and comfortable fit for simple daily dressing.', badge: 'Essentials', image: 'linear-gradient(135deg, #f6f1ff 0%, #d7c2ff 100%)' },
-        { name: 'Flexible Lounge Wear', category: 'Everyday Wear', description: 'Easy movement, soft texture, and a polished look for home and beyond.', badge: 'Relaxed', image: 'linear-gradient(135deg, #e8fbff 0%, #9ed8f0 100%)' },
+        { id: 'daily-layer-top', name: 'Daily Layer Top', category: 'Everyday Wear', description: 'A modern, soft everyday essential for all-day comfort.', badge: 'Lifestyle', image: 'linear-gradient(135deg, #fef2f2 0%, #f5c7c7 100%)' },
+        { id: 'calm-essentials-set', name: 'Calm Essentials Set', category: 'Everyday Wear', description: 'Clean design and comfortable fit for simple daily dressing.', badge: 'Essentials', image: 'linear-gradient(135deg, #f6f1ff 0%, #d7c2ff 100%)' },
+        { id: 'flexible-lounge-wear', name: 'Flexible Lounge Wear', category: 'Everyday Wear', description: 'Easy movement, soft texture, and a polished look for home and beyond.', badge: 'Relaxed', image: 'linear-gradient(135deg, #e8fbff 0%, #9ed8f0 100%)' },
       ] as ProductItem[],
     },
   ];
