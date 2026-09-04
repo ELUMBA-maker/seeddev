@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
+  menuOpen = signal(false);
+
   navItems = [
     { label: 'Home', route: '/' },
     { label: 'Products', route: '/products' },
@@ -19,6 +21,14 @@ export class Navbar {
   ];
 
   constructor(private router: Router) {}
+
+  toggleMenu() {
+    this.menuOpen.set(!this.menuOpen());
+  }
+
+  closeMenu() {
+    this.menuOpen.set(false);
+  }
 
   isLinkActive(route: string, label: string): boolean {
     if (label === 'What’s New') {
